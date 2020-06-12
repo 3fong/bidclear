@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  nacos:
+    build: ./nacos/build/
+    environment:
+    - PREFER_HOST_MODE=hostname
+    - MODE=standalone
+    volumes:
+    - ./standalone-logs/:/home/nacos/logs
+    ports:
+    - "8848:8848"
+    restart: on-failure
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379"
+  bid:
+    build: .
+    ports: 
+      - "9961:9961"
+    volumes:
+      - "/opt/workspace/bidclear/log:/opt/bidclear/log"
+      - "/opt/workspace/bidclear/file:/data/app/bc"
+      - "/opt/workspace/bidclear/file:/data/bc"
+    depends_on:
+      - nacos
+      - redis
