@@ -17,8 +17,10 @@ services:
       - "6379"
   bid:
     build: .
+    image: dockerliu3/bid
     ports: 
       - "9961:9961"
+      - "8099:8099"
     volumes:
       - "/opt/workspace/bidclear/log:/opt/bidclear/log"
       - "/opt/workspace/bidclear/file:/data/app/bc"
