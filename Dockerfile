@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-java:jre8-slim
+FROM anapsix/alpine-java:8_server-jre
 LABEL liulei getobjects@sina.com
 
 ENV BASE_DIR="/opt/bidclear" \
